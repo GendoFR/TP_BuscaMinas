@@ -1,7 +1,7 @@
 //Constantes del juego
-const COLUMNAS = 2;
-const FILAS = 2;
-const CANTIDAD_MINAS = 3;
+const COLUMNAS = 10;
+const FILAS = 10;
+const CANTIDAD_MINAS = 10;
 
 //Variables con colores para los casilleros (NO se pudieron declarar como constantes ya que  la fn color sólo está definida para el setup y el draw)
 var COLOR_CASILLERO_CON_MINA;
@@ -112,7 +112,18 @@ function mostrarMinas()
   }
 }
 
-function contarMinasAlrededor(columna, fila)
+function contarMinasAlrededor (columnaPresionada, filaPresionada)
 {
-  return 9;   //Esto hace que SIEMPRE cuente 9 minas alrededor. Modificar/completar
+  let minaCont = 0;
+  let minaColumnas = [1, -1, -1, 0, 1, -1, 0, 1];
+  let minaFilas = [0, 0, -1, -1, -1, 1, 1, 1];
+  // Va de 0 a 8 porque es la cantidad de casilleros q tiene que revisar viste 
+  for(let i = 0; i < 8; i++)
+  {
+    if(tieneMinaCasillero ((minaColumnas [i]+columnaPresionada), (minaFilas[i]+filaPresionada))) 
+    {
+      minaCont++;
+    }
+  }
+  return minaCont;
 }
